@@ -1,0 +1,98 @@
+{
+    "color": "#fc8d20",
+    "description": "Premiers pas... ",
+    "objects": [
+        {
+            "type": "wall",
+            "x": 200,
+            "y": 100,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 300,
+            "y": 100,
+            "rotation": 270
+        },
+        {
+            "type": "wall",
+            "x": 250,
+            "y": 64
+        },
+        {
+            "type": "button",
+            "x": 250,
+            "y": 130,
+            "rotation": 180,
+            "active": true,
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 850,
+                    "y": 150
+                }
+            ]
+        },
+        {
+            "type": "wall",
+            "x": 800,
+            "y": 100,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 900,
+            "y": 100,
+            "rotation": 270
+        },
+        {
+            "type": "wall",
+            "x": 850,
+            "y": 64
+        },
+        {
+            "type": "button",
+            "x": 500,
+            "y": 400,
+            "rotation": 90,
+            "active": true,
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 250,
+                    "y": 150
+                }
+            ]
+        },
+        {
+            "type": "mace",
+            "x": 850,
+            "y": 120,
+            "active": true
+        },
+        {
+            "type": "ball",
+            "x": 600,
+            "y": 400
+        },
+        {
+            "type": "rrunner",
+            "x": 600,
+            "y": 550,
+            "rotation": -30,
+            "active": true
+        },        
+        {
+            "type": "shadok",
+            "x": 850, 
+            "y": 450,
+            "active": false
+        }
+    ],
+    "spare": [
+        { "type": "balloon" },
+        { "type": "wall", "rotation": 45 },
+        { "type": "dryer" },
+        { "type": "wall", "rotation": 90 }
+    ]
+}

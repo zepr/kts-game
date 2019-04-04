@@ -1,0 +1,110 @@
+{
+    "color": "#2ef241",
+    "description": "C'est au pied du mur qu'on voit le mieux le mur",
+    "objects": [
+        {
+            "type": "wall",
+            "x": 200,
+            "y": 200,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 260,
+            "y": 200,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 200,
+            "y": 285,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 260,
+            "y": 285,
+            "rotation": 90
+        },
+        {
+            "type": "balloon",
+            "x": 230,
+            "y": 240
+        },
+        {
+            "type": "ball",
+            "x": 230,
+            "y": 30
+        },
+        {
+            "type": "button",
+            "x": 230,
+            "y": 300,
+            "active": "true",
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 550,
+                    "y": 240,
+                    "rotation": 90
+                }        
+            ]
+        },
+        {
+            "type": "button",
+            "x": 1100,
+            "y": 50,
+            "active": "true",
+            "rotation": 180,
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 180,
+                    "y": 60
+                },
+                {
+                    "type": "trap",
+                    "x": 280,
+                    "y": 60,
+                    "rotation": 180
+                }        
+            ]
+        },
+        {
+            "type": "balloon",
+            "x": 1100,
+            "y": 650,
+            "active": "true"
+        },
+        {
+            "type": "mace",
+            "x": 500,
+            "y": 150,
+            "active": true
+        },
+        {
+            "type": "wall",
+            "x": 550,
+            "y": 150,
+            "rotation": -90
+        },
+        {
+            "type": "wall",
+            "x": 550,
+            "y": 332,
+            "rotation": -90
+        },
+
+        {
+            "type": "shadok",
+            "x": 850, 
+            "y": 450
+        }
+    ],
+    "spare": [
+        { "type": "wall", "rotation": 30 },
+        { "type": "wall", "rotation": 30 },
+        { "type": "wall", "rotation": 30 },
+        { "type": "wall", "rotation": 30 }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "color": "#f25050",
+    "description": "Stairway to Heaven",
+    "objects": [
+        {
+            "type": "trampo",
+            "x": 950,
+            "y": 640
+        },
+        {
+            "type": "trampo",
+            "x": 800,
+            "y": 540
+        },
+        {
+            "type": "trampo",
+            "x": 650,
+            "y": 440
+        },
+        {
+            "type": "trampo",
+            "x": 500,
+            "y": 340
+        },
+        {
+            "type": "elec",
+            "x": 300,
+            "y": 200,
+            "rotation": 90,
+            "active": true
+        },
+
+        {
+            "type": "shadok",
+            "x": 950, 
+            "y": 200,
+            "active": true
+        }
+    ],
+    "spare": [
+        { "type": "dryer", "rotation": 40 },
+        { "type": "dryer", "rotation": 50 },
+        { "type": "dryer", "rotation": 60 }
+    ]
+}

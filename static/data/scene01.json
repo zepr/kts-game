@@ -1,0 +1,75 @@
+{
+    "color": "#0a0ac0",
+    "description": "Manque d'aspiration",
+    "objects": [
+        {
+            "type": "wall",
+            "x": 200,
+            "y": 360,
+            "rotation": 90
+        },
+        {
+            "type": "wall",
+            "x": 250,
+            "y": 400
+        },
+        {
+            "type": "wall",
+            "x": 250,
+            "y": 320
+        },
+        {
+            "type": "wall",
+            "x": 340,
+            "y": 400
+        },
+        {
+            "type": "wall",
+            "x": 340,
+            "y": 320
+        },
+        {
+            "type": "wall",
+            "x": 390,
+            "y": 360,
+            "rotation": 90
+        },
+        {
+            "type": "ball",
+            "x": 355,
+            "y": 370
+        },
+        {
+            "type": "shadok",
+            "x": 850, 
+            "y": 350,
+            "active": true
+        },
+        {
+            "type": "pikes",
+            "x": 850, 
+            "y": 430,
+            "active": true
+        },
+        {
+            "type": "button",
+            "x": 214,
+            "y": 340,
+            "rotation": 90,
+            "active": true,
+            "dependencies": [
+                {
+                    "type": "vacuum",
+                    "x": 850,
+                    "y": 250,
+                    "active": true
+                }
+            ]
+        }
+    ],
+    "spare": [
+        { "type": "vacuum" },
+        { "type": "dryer" },
+        { "type": "dryer", "rotation": 180 }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "color": "#f713e8",
+    "description": "It's a trap!",
+    "objects": [
+        {
+            "type": "mace",
+            "x": 550, 
+            "y": 450
+        },
+        {
+            "type": "swing",
+            "x": 500,
+            "y": 550,
+            "active": true
+        },
+        {
+            "type": "button",
+            "x": 600,
+            "y": 480,
+            "rotation": -90,
+            "active": true,
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 200,
+                    "y": 450
+                }
+            ]
+        },
+        {
+            "type": "wall",
+            "x": 630,
+            "y": 460
+        },
+        {
+            "type": "balloon",
+            "x": 240,
+            "y": 540
+        },
+        {
+            "type": "button",
+            "x": 300,
+            "y": 100,
+            "rotation": 180,
+            "active": true,
+            "dependencies": [
+                {
+                    "type": "trap",
+                    "x": 700,
+                    "y": 200
+                }
+            ]
+        },
+        {
+            "type": "mace",
+            "x": 700, 
+            "y": 140,
+            "active": true
+        },
+        {
+            "type": "shadok",
+            "x": 850, 
+            "y": 450
+        }
+    ],
+    "spare": [
+        { "type": "ball" },
+        { "type": "wall" },
+        { "type": "wall" }
+    ]
+}
