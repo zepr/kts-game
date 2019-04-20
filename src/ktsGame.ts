@@ -7,11 +7,6 @@ import { Scene, ObjectDefinition, ObjectFactory, SpareObjectDefinition } from '.
 
 
 
-interface Clickable {
-    onClick(engine: Zepr.Engine, screen: Zepr.GameScreen, point: Zepr.Point): void;
-}
-
-
 interface SpareObject {
     type: string;
     rotation: number;
@@ -19,7 +14,7 @@ interface SpareObject {
 }
 
 
-class ExitSprite extends Zepr.ImageSprite implements Clickable {
+class ExitSprite extends Zepr.ImageSprite implements Zepr.Clickable {
     onClick(engine: Zepr.Engine, screen: Zepr.GameScreen, point: Zepr.Point): void {
         // Reset content
         engine.setData('scene', null);
@@ -29,7 +24,7 @@ class ExitSprite extends Zepr.ImageSprite implements Clickable {
 }
 
 
-class GameRulerSprite extends Zepr.RawSprite<Zepr.Rectangle> implements Clickable {
+class GameRulerSprite extends Zepr.RawSprite<Zepr.Rectangle> implements Zepr.Clickable {
 
     private grCanvas: HTMLCanvasElement;
     private grContext: CanvasRenderingContext2D;
@@ -120,7 +115,7 @@ class GameRulerSprite extends Zepr.RawSprite<Zepr.Rectangle> implements Clickabl
 }
 
 
-class MovableSprite extends Zepr.ImageSprite implements Clickable {
+class MovableSprite extends Zepr.ImageSprite implements Zepr.Clickable {
 
     private stdImage: HTMLImageElement;
     private redImage: HTMLImageElement;
@@ -186,7 +181,7 @@ class MovableSprite extends Zepr.ImageSprite implements Clickable {
 }
 
 
-class ControlSprite extends Zepr.ImageSprite implements Clickable {
+class ControlSprite extends Zepr.ImageSprite implements Zepr.Clickable {
 
     public constructor(
         private play: HTMLImageElement, private stop: HTMLImageElement) {
@@ -194,7 +189,6 @@ class ControlSprite extends Zepr.ImageSprite implements Clickable {
     }
 
     onClick(engine: Zepr.Engine, screen: Zepr.GameScreen, point: Zepr.Point): void {
-
         let scr: KtsGameScreen = <KtsGameScreen>screen;
         if (scr.isActive()) {
             this.setImage(this.play);
@@ -437,22 +431,20 @@ export class KtsGameScreen extends P2Screen implements Zepr.ClickListener, Zepr.
     }
 
 
-    onClick(engine: Zepr.Engine, point: Zepr.Point, sprites: Zepr.Sprite<any>[]): void {
+    onClick(engine: Zepr.Engine, point: Zepr.Point, sprites: Zepr.Sprite<any>[]): boolean {
 
         // Hide start popup if displayed
         if (this.startSprite) {
             engine.removeSprite(this.startSprite);
             this.startSprite = null;
-            return;
+            return false;
         }
 
         // End of game
         if (this.endSprite) {
             this.stopWorld();
-
-            // TODO : Ajout d'un check sur le niveau
-
             engine.start('menu');
+            return false;
         }
 
         // When running, only playButton is active
@@ -460,15 +452,10 @@ export class KtsGameScreen extends P2Screen implements Zepr.ClickListener, Zepr.
             if (sprites.indexOf(this.playButton) > -1) {
                 this.playButton.onClick(engine, this, point);
             }
-            return;
+            return false;
         }
-
-        // Game is not running
-        sprites.forEach((sprite: any): void => {
-            if (sprite.onClick) {
-                (<Clickable>sprite).onClick(engine, this, point);
-            }
-        })
+        
+        return true;
     }
 
     onDrag(engine: Zepr.Engine, move: Zepr.Vector): void {

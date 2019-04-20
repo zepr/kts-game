@@ -1,7 +1,7 @@
 import Zepr = require('zepr.ts');
 import { Scene } from './ktsObjects';
 
-export class MenuItem extends Zepr.RawSprite<Zepr.Rectangle> {
+class MenuItem extends Zepr.RawSprite<Zepr.Rectangle> implements Zepr.Clickable {
 
     private offCanvas: HTMLCanvasElement;
 
@@ -51,21 +51,39 @@ export class MenuItem extends Zepr.RawSprite<Zepr.Rectangle> {
         context.drawImage(this.offCanvas, this.shape.x - 40, this.shape.y - 40);
     }
 
-    getData(): Scene {
-        return this._data;
-    }
-
-    getIndex(): number {
-        return this._index;
+    onClick(engine: Zepr.Engine, screen: Zepr.GameScreen, point: Zepr.Point): void {
+        engine.setData('scene', this._data);
+        engine.setData('level', this._index);
+        engine.start('game');
     }
 }
 
 
 
-export class KtsMenuScreen implements Zepr.GameScreen, Zepr.ClickListener {
+class FullscreenSprite extends Zepr.RawSprite<Zepr.Circle> implements Zepr.Clickable {
+
+    constructor(private fullscreen: HTMLImageElement, private window: HTMLImageElement) {
+        super(new Zepr.Circle(770, 30, 16), 1);
+    }
+
+    render(context: CanvasRenderingContext2D): void {
+        if (Zepr.Fullscreen.isActive()) {
+            context.drawImage(this.window, this.shape.x - 20, this.shape.y - 20);
+        } else {
+            context.drawImage(this.fullscreen, this.shape.x - 20, this.shape.y - 20);
+        }
+    }
+
+    onClick(engine: Zepr.Engine, screen: Zepr.GameScreen, point: Zepr.Point): void {
+        Zepr.Fullscreen.toggle();
+    }
+}
+
+
+export class KtsMenuScreen implements Zepr.GameScreen {
     
     images: Array<string> = [
-        'images/logo_small.png', 'images/menu_box.png'
+        'images/logo_small.png', 'images/menu_box.png', 'images/mode_fullscreen.png', 'images/mode_window.png'
     ];
 
     private currentIndex: number;
@@ -114,6 +132,12 @@ export class KtsMenuScreen implements Zepr.GameScreen, Zepr.ClickListener {
                 engine.getImage('images/logo_small.png'),
                 new Zepr.Rectangle(engine.width / 2, 96, 228, 192)));
 
+        // Fullscreen mode
+        engine.addSprite(
+            new FullscreenSprite(
+                engine.getImage('images/mode_fullscreen.png'), 
+                engine.getImage('images/mode_window.png')));
+
         // Font
         this.font = new Zepr.Font('Schoolbell', 40, 'black');
 
@@ -149,18 +173,5 @@ export class KtsMenuScreen implements Zepr.GameScreen, Zepr.ClickListener {
                 this.uploadInProgress = false;
             });    
         }
-    }
-
-    onClick(engine: Zepr.Engine, point: Zepr.Point, sprites: Zepr.Sprite<any>[]): void {
-        sprites.some((sprite: Zepr.Sprite<any>): boolean => {
-            if ((<any>sprite).getData) {
-                let scene: Scene = (<MenuItem>sprite).getData();
-                engine.setData('scene', scene);
-                engine.setData('level', (<MenuItem>sprite).getIndex());
-                engine.start('game');
-                return true;
-            }
-            return false;
-        });
     }
 }

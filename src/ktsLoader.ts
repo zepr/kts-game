@@ -78,7 +78,7 @@ class LoaderSprite extends Zepr.RawSprite<Zepr.Rectangle> {
 
 window.onload = () => {
     let engine = new Zepr.Engine(1280, 720, new KtsLoaderScreen());
-    engine.enableMouseControl(true);
+    engine.enableMouseControl(Zepr.MouseEventType.DELEGATE);
     engine.enableMouseDrag();
 
     engine.addScreen('menu', new KtsMenuScreen());

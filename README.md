@@ -72,6 +72,11 @@ Le jeu en lui-même est distribué sous licence GPLv3
 
 ## Changelog
 
+### 0.8.1 - 2019.04.20
+
+- Passage à zepr.ts@0.3.0
+- Ajout du mode "plein écran"
+
 ### 0.8.0 - 2019.04.01
 
 - Passage à un repository public
